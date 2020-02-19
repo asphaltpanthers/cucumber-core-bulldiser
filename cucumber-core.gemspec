@@ -3,13 +3,11 @@ $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 require "cucumber/core/version"
 
 Gem::Specification.new do |s|
-  s.name        = 'cucumber-core'
+  s.name        = 'cucumber-core-bulldiser'
   s.version     = Cucumber::Core::Version
-  s.authors     = ["Aslak Hellesøy", "Matt Wynne", "Steve Tooke", "Oleg Sukhodolsky", "Tom Brand"]
-  s.description = 'Core library for the Cucumber BDD app'
+  s.authors     = ["Aslak Hellesøy", "Matt Wynne", "Steve Tooke", "Oleg Sukhodolsky", "Tom Brand", "Dustin Iser"]
+  s.description = 'Core library for the Cucumber BDD app with addtions made by bulldiser'
   s.summary     = "cucumber-core-#{s.version}"
-  s.email       = 'cukes@googlegroups.com'
-  s.homepage    = "https://cucumber.io"
   s.platform    = Gem::Platform::RUBY
   s.license     = "MIT"
   s.required_ruby_version = '>= 2.1' # Keep in sync with .travis.yml
