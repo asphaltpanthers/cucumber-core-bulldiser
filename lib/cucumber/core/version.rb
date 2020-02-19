@@ -3,7 +3,7 @@ module Cucumber
   module Core
     class Version
       def self.to_s
-        "3.2.1-bulldiser"
+        "3.2.1"
       end
     end
   end

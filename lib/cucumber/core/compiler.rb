@@ -97,6 +97,11 @@ module Cucumber
           descend.call(compiler)
           self
         end
+
+        def pre_feature(pre_feature, &descend)
+          receiver.on_step([@feature, pre_feature])
+          self
+        end
       end
 
       # @private
@@ -137,6 +142,10 @@ module Cucumber
         def outline_steps
           @outline_steps ||= []
         end
+      end
+
+      class PreFeatureCompiler
+
       end
 
       # @private

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'cucumber/core/ast'
 require 'cucumber/core/platform'
+require_relative '../ast/pre_feature'
 
 module Cucumber
   module Core
@@ -37,7 +38,7 @@ module Cucumber
           def handle_comments(comments)
             remaining_comments = []
             comments.each do |comment|
-              if line > comment.location.line
+              if line != nil && line > comment.location.line
                 @comments << comment
               else
                 remaining_comments << comment
@@ -124,7 +125,8 @@ module Cucumber
           def initialize(*)
             super
             @language = Ast::LanguageDelegator.new(attributes[:language], ::Gherkin::Dialect.for(attributes[:language]))
-            @feature_element_builders = attributes[:children].map do |child|
+            @feature_element_builders = [ PreFeatureBuilder.new ]
+            @feature_element_builders = @feature_element_builders + attributes[:children].map do |child|
               case child[:type]
               when :Background
                 BackgroundBuilder.new(file, child)
@@ -157,6 +159,16 @@ module Cucumber
 
           def children
             feature_element_builders
+          end
+        end
+
+        class PreFeatureBuilder < Builder
+          def initialize(*)
+            
+          end
+
+          def result(language)
+            Ast::PreFeature.new
           end
         end
 
